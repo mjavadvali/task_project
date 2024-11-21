@@ -6,7 +6,18 @@
   <p>----------------------------------------</p>
   {% for product in products %} {{product.title}}
   <a href="{{ product.get_absolute_url }}">
-    <img src="{{ product.image.url }}" alt="{{ product.image.url }}" />
+    <img
+      src="{{ product.image.url }}"
+      alt="{{ product.image.url }}"
+      width="200px"
+      height="200px"
+    />
   </a>
+  <form action="{% url 'cart-add' product.pk %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" value="{{ product.pk }}" />
+    <input type="number" name="quantity" value="1" min="1" required />
+    <button type="submit">Add to Cart</button>
+  </form>
   {% endfor %}
 </div>
