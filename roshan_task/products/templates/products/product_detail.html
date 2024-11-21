@@ -1,0 +1,19 @@
+﻿<div>
+  {{product.title}}
+  <img src="{{product.image.url}}" alt="" width="100px" height="100px" />
+  {% if request.user.is_superuser %}
+
+  <form action="">{% csrf_token %} {{form.as_p}}</form>
+
+  <form method="POST" style="margin-top: 20px">
+    {% csrf_token %}
+    <button
+      type="submit"
+      name="delete"
+      style="background-color: red; color: white"
+    >
+      Delete Product
+    </button>
+  </form>
+  {% endif %}
+</div>

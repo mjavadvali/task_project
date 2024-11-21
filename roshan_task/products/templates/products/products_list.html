@@ -1,0 +1,12 @@
+﻿<div>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %} {{form}}
+    <button>Add Product</button>
+  </form>
+  <p>----------------------------------------</p>
+  {% for product in products %} {{product.title}}
+  <a href="{{ product.get_absolute_url }}">
+    <img src="{{ product.image.url }}" alt="{{ product.image.url }}" />
+  </a>
+  {% endfor %}
+</div>
