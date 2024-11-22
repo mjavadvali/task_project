@@ -11,22 +11,40 @@ class Cart:
 
     def add_product(self, product, quantity=1):
         product_title = product.title
-        if product_title not in self.cart:
-            self.cart[product_title] = {'quantity': 0,
-                                     'price': str(product.price)}
-        
-        if self.cart[product_title]['quantity'] == 0:
-            self.cart[product_title]['quantity'] = quantity
-        else:
-            self.cart[product_title]['quantity'] += quantity
-       
-        self.save()
-    
-    def remove_product(self, product):
-        
-        if str(product) in self.cart:
-            del self.cart[str(product)]
+
+        try:
+            quantity = int(quantity)
+        except ValueError:
+            raise ValueError("Quantity must be an integer.")
+
+        if quantity == -1:
+            if product_title not in self.cart:
+                raise IndexError("Product not found in the cart.")
+            if self.cart[product_title]["quantity"] == 1:
+                self.remove_product(product)  
+            else:
+                self.cart[product_title]["quantity"] -= 1
             self.save()
+            return
+
+        if product_title not in self.cart:
+            self.cart[product_title] = {
+                "quantity": 0,
+                "price": str(product.price)
+            }
+
+        if self.cart[product_title]["quantity"] == 0:
+            self.cart[product_title]["quantity"] = quantity
+        else:
+            self.cart[product_title]["quantity"] += quantity
+
+        self.save()
+
+    def remove_product(self, product):
+        product_title = product.title
+        del self.cart[product_title]
+        self.save()
+        
 
     def clear(self):
         self.cart = self.session["cart"] = {}
