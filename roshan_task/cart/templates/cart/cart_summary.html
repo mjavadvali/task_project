@@ -1,5 +1,6 @@
 ﻿<div>
-  {% if items.lenght > 0 %} {% for item in items %}
+  {% for item in items %} {{item}} {% endfor %} {% if items|length > 0 %} 
+  {% for item in items %}
   <h1>{{ item.product.title }}</h1>
 
   <input

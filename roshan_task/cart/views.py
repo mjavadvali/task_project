@@ -11,6 +11,7 @@ def cart_add(request, product_id):
     cart.add_product(product, int(quantity))
    
     referer_url = request.META.get('HTTP_REFERER', '/')
+    print('---sssssssssss-----')
     print(cart.items())
 
     return redirect(referer_url)
@@ -34,4 +35,5 @@ def cart_clear(request):
 def cart_summary(request):
     cart = Cart(request.session)
     cart_items = cart.items()
+    print(cart_items)
     return render(request, 'cart/cart_summary.html', {'items': cart_items})
