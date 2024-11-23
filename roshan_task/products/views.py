@@ -5,6 +5,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 from .forms import ProductForm, CategoryForm
 from django.http import JsonResponse
 from django.utils.text import slugify
+from hitcount.models import HitCount
+from hitcount.views import HitCountMixin
 
 
 class ProductList(ListView):
@@ -38,6 +40,9 @@ class ProductDetail(View):
     def get(self, request, pk):
         product = get_object_or_404(Product, pk=pk)
         form = ProductForm(instance=product)
+
+        hit_count = HitCount.objects.get_for_object(product)
+        HitCountMixin.hit_count(request, hit_count) 
         return render(request, 
                       template_name=self.template_name, 
                       context={'product': product, 'form': form})

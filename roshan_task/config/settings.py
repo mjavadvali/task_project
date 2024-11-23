@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     
     'api.api_products',
-    'api.api_cart'
+    'api.api_cart',
+
+    'hitcount'
 
 ]
 
@@ -146,3 +148,7 @@ SITE_ID = 1
 CSRF_TRUSTED_ORIGINS = [
     'chrome-extension://eejfoncpjfgmeleakejdcanedmefagga',
 ]
+
+
+CELERY_BROKER_URL = "redis://redis:6379"
+CELERY_RESULT_BACKEND = "redis://redis:6379"

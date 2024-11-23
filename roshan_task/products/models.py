@@ -3,6 +3,9 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import FileExtensionValidator
 from django.urls import reverse
+from hitcount.models import HitCountMixin
+from hitcount.models import HitCount
+from django.contrib.contenttypes.fields import GenericRelation
 
 class Category(models.Model):
     title = models.CharField(max_length=50)
@@ -27,7 +30,7 @@ class ProductStatus(models.IntegerChoices):
     available = 1, _('موجود')
     unavailable = 2, _('ناموجود')
 
-class Product(models.Model):
+class Product(models.Model, HitCountMixin):
     title = models.CharField(max_length=70, verbose_name=_("title"))
     slug = models.CharField(max_length=70, verbose_name=_("slug"), blank=True)
     category = models.ForeignKey(Category, 
@@ -54,6 +57,10 @@ class Product(models.Model):
                                 )],
                             )
     
+    hit_count_generic = GenericRelation(
+                        HitCount, object_id_field='object_pk',
+                        related_query_name='hit_count_generic_relation')
+    
     def get_absolute_url(self):
         return reverse("product_detail", kwargs={"pk": self.pk})
     
@@ -66,3 +73,14 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+    
+class ProductInfo(models.Model):
+    product = models.ForeignKey(Product, verbose_name=_("product"), on_delete=models.CASCADE)
+    date = models.DateField(help_text="YYYY-MM-DD")
+    views = models.IntegerField(default=0)
+    # number_of_sells = ----------
+    
+
+    def __str__(self):
+        return f'{self.product}-{self.date}'
+    
