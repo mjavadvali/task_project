@@ -3,4 +3,4 @@ from api.api_products.serializers import ProductSerializer
 
 class CartSerializer(serializers.Serializer):
     product = ProductSerializer()
-    quantity = serializers.IntegerField
+    quantity = serializers.IntegerField()

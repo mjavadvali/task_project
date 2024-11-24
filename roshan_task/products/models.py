@@ -23,12 +23,14 @@ class Category(models.Model):
 
 
     def __str__(self):
-        return f'{self.title}'
+        return self.title
     
 
 class ProductStatus(models.IntegerChoices):
     available = 1, _('موجود')
     unavailable = 2, _('ناموجود')
+
+    
 
 class Product(models.Model, HitCountMixin):
     title = models.CharField(max_length=70, verbose_name=_("title"))

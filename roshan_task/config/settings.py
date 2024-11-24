@@ -142,6 +142,7 @@ SITE_ID = 1
 
 CSRF_TRUSTED_ORIGINS = [
     'chrome-extension://eejfoncpjfgmeleakejdcanedmefagga',
+    'chrome-extension://eejfoncpjfgmeleakejdcanedmefagga'
 ]
 
 
@@ -149,7 +150,7 @@ CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
 
 
-import products.tasks
+
 
 CELERY_BEAT_SCHEDULE = {
     "sample_task": {

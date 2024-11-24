@@ -57,6 +57,10 @@ class Cart:
         cart_items = []
         for item in self.cart:
             product = get_object_or_404(Product, title=item)
+            
+            # product_info = {'title': product.title, 
+            #                 'price': product.price, 
+            #                 'category': product.category}
             cart_items.append({'product':  product, 'quantity': self.cart[item]["quantity"]})
         return cart_items
 

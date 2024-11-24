@@ -15,7 +15,6 @@ def cart_add(request, product_id):
     quantity = request.data.get('quantity', 1)  
     cart.add_product(product, int(quantity))
     
-    
     return Response({
         'message': 'Product added to cart successfully!', }, 
         status=status.HTTP_200_OK)
@@ -23,12 +22,13 @@ def cart_add(request, product_id):
 @api_view(['DELETE'])
 def cart_remove(request, product_id):
     cart = Cart(request.session)
-    product = get_object_or_404(pk=product_id)
-    if product:
+    product = get_object_or_404(Product, pk=product_id)
+    if any(item['product'].title == product.title for item in cart.items()):
         cart.remove_product(product)
         return Response({'message': 'Product removed from cart'}, status=200)
-    else:
-        return Response({'message': 'Product not found in cart'}, status=404)
+    return Response({'message': 'Product not found in cart'}, status=404)
+    
+
     
 @api_view(['DELETE'])
 def cart_clear(request):
@@ -43,6 +43,7 @@ def cart_clear(request):
 class CartItems(APIView):
     def get(self, request):
         cart = Cart(request.session)
+        
 
         if not cart.cart:
             return Response({'message': 'Cart is empty'}, status=200)
