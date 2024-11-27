@@ -20,4 +20,4 @@
 
 
 <p>Example of a request in Rester:</p
-![Capture](https://github.com/user-attachments/assets/67fde6d0-3630-4df7-83b1-70841eeb0324)
+![plot](./C:\Users\ali\Desktop\Capture.JPG)
