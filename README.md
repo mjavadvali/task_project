@@ -3,7 +3,7 @@
 
 <h2>1. Clone the repository</h2>
 <p>First, clone the repository by running the following command:</p>
-<pre><code>git clone <strong>[your-git-repository-url](https://github.com/mjavadvali/task_project.git)</strong></code></pre>
+<pre><code>git clone <strong>https://github.com/mjavadvali/task_project.git</strong></code></pre>
 
 <h2>2. Build and start the Docker containers</h2>
 <p>Navigate to the project directory and run the following command to build and start the containers:</p>
