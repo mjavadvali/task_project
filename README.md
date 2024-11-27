@@ -19,5 +19,5 @@
 <pre><code>Authorization: Token &lt;your-token-here&gt;</code></pre>
 
 
-<p>Example of a request in Rester:</p>
+<p>Example of a request using curl:</p>
 <p>curl -X GET http://localhost:8000/api/products/ -H "Authorization: Token {the token you get from api/auth/token/}"</p>
