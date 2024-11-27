@@ -20,9 +20,4 @@
 
 
 <p>Example of a request in Rester:</p>
-<p align="center">
-  <img src="C:\Users\ali\Desktop\Capture.JPG" width="350" title="hover text">
-  <img src="C:\Users\ali\Desktop\Capture.JPG" width="350" alt="accessibility text">
-</p>
-
-![plot](C:\Users\ali\Desktop\Capture.JPG)
+<p>curl -X GET http://localhost:8000/api/products/ -H "Authorization: Token {the token you get from api/auth/token/}"</p>
