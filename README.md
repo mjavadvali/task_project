@@ -1,5 +1,4 @@
-
-    <h1>Project Setup</h1>
+<h1>Project Setup</h1>
     <p>Follow the instructions below to set up and run the project.</p>
 
     <h2>1. Clone the repository</h2>
