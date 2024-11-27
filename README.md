@@ -19,5 +19,10 @@
 <pre><code>Authorization: Token &lt;your-token-here&gt;</code></pre>
 
 
-<p>Example of a request in Rester:</p
+<p>Example of a request in Rester:</p>
+<p align="center">
+  <img src="C:\Users\ali\Desktop\Capture.JPG" width="350" title="hover text">
+  <img src="C:\Users\ali\Desktop\Capture.JPG" width="350" alt="accessibility text">
+</p>
+
 ![plot](C:\Users\ali\Desktop\Capture.JPG)
