@@ -1,0 +1,141 @@
+﻿:root {
+    --color-primary: #2584ff;
+    --color-secondary: #00d9ff;
+    --color-accent: #ff3400;
+    --color-headings: #1b0760;
+    --color-body: #918ca4;
+    --color-body-darker: #5c5577;
+    --color-border: #ccc;
+    --border-radius: 30px;
+  }
+
+/* 
+  * {
+    direction: rtl;
+  }
+ */
+
+body {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    color: var(--color-body);
+    font-size: 2.4rem;
+    line-height: 1.5;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+
+/* form  */
+
+.add-product {
+    width: 90rem;
+    display: inline-block;
+    margin-top: 4rem;
+}
+.add-product h2 {
+    direction: rtl; 
+    text-align: right; 
+  }
+.add-product input {
+  margin-inline-start: auto;
+    margin-left: 25rem;
+}
+.form-group {
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    text-align: right;
+    font-weight: bold;
+  
+  }
+  
+  .form-group input[type=text], .form-group input[type=number], .form-group select, .form-group textarea {
+    width: 49rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 2rem;
+    box-sizing: border-box;
+    margin-right: 0; 
+    unicode-bidi:bidi-override; 
+  }
+  .form-group textarea {
+    height: 12rem;
+  }
+  .form-group input[type=file] {
+    width: 49rem;
+    padding: 0.5rem;
+    margin-right: 0;
+  }
+/* Navbar */
+
+.navbar {
+  background: #ff8155a1;
+    width: 100%;
+    padding: 3rem 0;
+    position: fixed;
+    top:0;
+    z-index: 10;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .09);
+}
+
+
+ .product-card {
+  border: 1px solid #ececec;
+    border-radius: 10px;
+    box-shadow: 1px 2px 4px 0px;
+}
+
+
+.products-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 40rem);
+  justify-content: center;
+  margin-top: 8rem;
+  gap: 1.5rem;
+}
+
+
+
+
+/* cart */
+
+
+
+.products-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 40rem);
+  justify-content: center;
+  align-items: start; /* Align items at the top */
+  gap: 1.5rem;
+}
+
+
+
+/* login */
+.login-form form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 1.75rem;
+      gap: 4rem;
+      border: 1px solid gray;
+      width: 50rem;
+      height: 24rem;
+      place-self: center;
+      padding-top: 4rem;
+      border-radius: 20px;
+      background: #f3f3f3;
+}
+
+
+.signin a {
+  font-size: 14px;
+  text-decoration: none;
+}

@@ -5,8 +5,19 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ["title", "category", 
-                  "description", "available", 
-                  "price", "image"]
+                  "description", 
+                  "price","stock", "image"]
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['title'].required = True
+        self.fields['category'].required = True
+        self.fields['description'].required = True
+        self.fields['image'].required = True
+        self.fields['stock'].required = True
+
+
+
 
     # def __init__(self, *args, **kwargs):
     #     super(ProductForm, self).__init__(*args, **kwargs)

@@ -1,0 +1,48 @@
+﻿{% include "base/base.html" %} {% block content %}
+<div class="product-card">
+  <a href="{{ product.get_absolute_url }}">
+    <img
+      src="{{ product.image.url }}"
+      alt="{{ product.image.url }}"
+      width="200px"
+      height="200px"
+      style="
+        display: block;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2rem;
+      "
+    />
+  </a>
+  <div class="product-info" style="margin-right: 2rem;">
+    
+  <h4 style="margin-left: 1rem" dir="rtl">{{ product.title }}</h4>
+  <p style="    margin-left: 0.5rem;    ont-size: 1.8rem;">{{product.description}}</p>
+  <p>
+      دسته بندی:
+      <a href="{% url 'category_products' product.category.pk %}" style="text-decoration: none;
+    color: #0d0d4e;">
+        {{product.category}}
+      </a>
+    </p>
+     </div>
+  <form
+    action="{% url 'cart-add' product.pk %}"
+    method="post"
+    style="text-align-last: center; margin-top: 5rem"
+  >
+    {% csrf_token %}
+    <input type="hidden" name="product_id" value="{{ product.pk }}" />
+    <input
+      type="number"
+      name="quantity"
+      value="1"
+      min="1"
+      required
+      style="width: 23rem"
+    />
+    <button type="submit">Add to Cart</button>
+  </form>
+</div>
+{% endblock %}

@@ -2,8 +2,6 @@
 import csv
 import os
 from datetime import datetime
-from products.models import Product
-from collections import defaultdict
 from products.utils import get_most_daily_viewed_products_by_category
 
 class Command(BaseCommand):

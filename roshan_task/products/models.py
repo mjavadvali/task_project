@@ -26,13 +26,14 @@ class Category(models.Model):
         return self.title
     
 
-class ProductStatus(models.IntegerChoices):
-    available = 1, _('موجود')
-    unavailable = 2, _('ناموجود')
+# class ProductStatus(models.IntegerChoices):
+#     available = 1, _('موجود')
+#     unavailable = 2, _('ناموجود')
 
     
 
 class Product(models.Model, HitCountMixin):
+
     title = models.CharField(max_length=70, verbose_name=_("title"))
     slug = models.CharField(max_length=70, verbose_name=_("slug"), blank=True)
     category = models.ForeignKey(Category, 
@@ -41,12 +42,13 @@ class Product(models.Model, HitCountMixin):
     description = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    available = models.IntegerField(choices=ProductStatus.choices, 
-                                    verbose_name=_("available"), 
-                                    default=ProductStatus.unavailable.value)
+   
+    available = models.BooleanField(default=False, blank=True)
     price = models.DecimalField(
         max_digits=10, decimal_places=0, default=0, verbose_name=_("price")
     )
+
+    stock = models.PositiveIntegerField(default=0, verbose_name=_("stock"))
 
     image = models.ImageField( 
                             upload_to="images/products",
@@ -71,6 +73,9 @@ class Product(models.Model, HitCountMixin):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title, allow_unicode=True)
+        
+        if self.stock > 0:
+            self.available = True
         super(Product, self).save(*args, **kwargs)
 
     def __str__(self):

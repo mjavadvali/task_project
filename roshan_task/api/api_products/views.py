@@ -3,14 +3,14 @@ from rest_framework import status
 from .serializers import ProductSerializer, CategorySerializer
 from rest_framework.generics import (
     ListCreateAPIView, 
-    RetrieveAPIView, 
     ListAPIView, 
     RetrieveUpdateDestroyAPIView,
 ) 
 from .permissions import IsAdminOrReadOnly
 from products.models import Product, Category
 from rest_framework.permissions import IsAdminUser
-
+from hitcount.models import HitCount
+from hitcount.views import HitCountMixin
 
 class ProductListCreate(ListCreateAPIView):
     serializer_class = ProductSerializer
@@ -31,6 +31,11 @@ class ProductRetrieve(RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     permission_classes = [IsAdminUser]
 
+    def retrieve(self, request, *args, **kwargs):
+        product = self.get_object()
+        hit_count = HitCount.objects.get_for_object(product)
+        HitCountMixin.hit_count(request, hit_count) 
+        return super().retrieve(request, *args, **kwargs)
 
 
 class CategoryListCreate(ListCreateAPIView):

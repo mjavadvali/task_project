@@ -21,13 +21,17 @@ class ProductList(ListView):
         return render(request, self.template_name, {'products': products, 'form': form})
 
     def post(self, request, *args, **kwargs):
-        form = ProductForm(request.FILES, request.POST)
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             title = form.cleaned_data['title']
             new_product = form.save(commit=False)
             new_product.slug = slugify(title)  
+            if new_product.stock > 0:
+                new_product.available = True
+      
             new_product.save()
-            return redirect('product_list')
+            return redirect('products_list')
+
         else:
             print(form.errors) 
             print(request.POST) 
@@ -124,4 +128,4 @@ class CategoryProductsList(View):
         if Category.objects.filter(pk=pk).exists():
             category = get_object_or_404(Category, pk=pk)
             products = Product.objects.filter(category=category)
-        return render(request, 'categories/category_products.html' ,{'products': products})
+        return render(request, 'categories/category_products.html' ,{'products': products, 'category': category})
