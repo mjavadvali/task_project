@@ -16,16 +16,9 @@ class Cart:
             quantity = int(quantity)
         except ValueError:
             raise ValueError("Quantity must be an integer.")
-
-        if quantity == -1:
-            if product_title not in self.cart:
-                raise IndexError("Product not found in the cart.")
-            if self.cart[product_title]["quantity"] == 1:
-                self.remove_product(product)  
-            else:
-                self.cart[product_title]["quantity"] -= 1
-            self.save()
-            return
+        
+        if product.stock < quantity:
+            raise ValueError(f"Cannot add {quantity} of {product_title} to cart. Only {product.stock} available in stock.")
 
         if product_title not in self.cart:
             self.cart[product_title] = {
@@ -57,10 +50,6 @@ class Cart:
         cart_items = []
         for item in self.cart:
             product = get_object_or_404(Product, title=item)
-            
-            # product_info = {'title': product.title, 
-            #                 'price': product.price, 
-            #                 'category': product.category}
             cart_items.append({'product':  product, 'quantity': self.cart[item]["quantity"]})
         return cart_items
 

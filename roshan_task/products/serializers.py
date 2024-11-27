@@ -13,4 +13,4 @@ class ProductSerializer(serializers.ModelSerializer):
     category = serializers.CharField(source="category.title")
     class Meta:
         model = Product
-        fields = ["title", "category", "description", "available", "price", "image"]
+        fields = ["title", "category", "description", "stock", "price", "image"]
