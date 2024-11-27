@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Setup</title>
-</head>
-<body>
+
     <h1>Project Setup</h1>
     <p>Follow the instructions below to set up and run the project.</p>
 
@@ -26,8 +19,6 @@
     <p>Include the token in the <strong>Authorization</strong> header of your request:</p>
     <pre><code>Authorization: Token &lt;your-token-here&gt;</code></pre>
 
-    <p>Example of a request in Rester:</p>
-    ![Capture](https://github.com/user-attachments/assets/37df273a-439d-40ea-8d4e-5eba8c88fccf)
 
-</body>
-</html>
+    <p>Example of a request in Rester:</p
+![Capture](https://github.com/user-attachments/assets/67fde6d0-3630-4df7-83b1-70841eeb0324)
